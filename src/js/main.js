@@ -1,6 +1,8 @@
 'use strict';
 
 const listMargarita = document.querySelector('.js-list-margarita');
+const inputUser =document.querySelector('.inputuser');
+const inputSearch = document.querySelector('.js-search');
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita';
 //variable que guarda la información, datos de las margaritas
 let listMargaritaData = [];
@@ -10,13 +12,24 @@ fetch(url)
   .then(data => {
     console.log(data);
     listMargaritaData = data.drinks;
+    renderMargarita(listMargaritaData);
 
 })
 
 //pintar un elemento de la lista
-function renderMargarita(drink) {
-    listMargarita.innerHTML = `<li>
-<img${drinks.strDrinkThumb}>
-<h2>${drinks.strDrink}</h2>
+function renderMargarita(drinks) {
+  
+  for (const drink of drinks)
+    listMargarita.innerHTML += `<li>
+     <h2 class="title">${drink.strDrink}</h2>
+     <img src=${drink.strDrinkThumb}>
+  
 </li>`;
 }
+
+function hadleClick(ev) {
+  const inputUserValue = (inputUser.value);
+  
+}
+
+inputSearch.addEventListener('click', hadleClick);
