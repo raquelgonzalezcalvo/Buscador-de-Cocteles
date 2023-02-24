@@ -10,13 +10,13 @@ let listDrinksData = [];
 // let listCocktail = [];
 //guardar la lista de favoritos 
 let listFavoritesData = [];
-let listFavorites = document.querySelector('.js-list-favorites');
+const listFavorites = document.querySelector('.js-list-favorites');
 
 fetch(url)
   .then(response => response.json())
   .then(data => {
     console.log(data);
-    listDrinksData = data.drinks;
+    listDrinksData = data.drinks; //palabra de nuestro array
     renderDrinks(listDrinksData);
 
 })
@@ -29,7 +29,7 @@ function renderDrinks(drinks) {
     if (drink.strDrinkThumb) {
     listDrinks.innerHTML += `<li class="js-pack" id="${drink.idDrink}">
      <h2 class="title">${drink.strDrink}</h2>
-     <img src=${drink.strDrinkThumb}>
+     <img src=${drink.strDrinkThumb} class="image">
 </li>`;
 }
  else  {
@@ -53,23 +53,48 @@ function hadleClickSearch(ev) {
     console.log(data);
     //añade la lista con los datos de los cocktails
     listDrinksData = data.drinks;
-    //vaciate las margaritas predeterminadas
+    //vaciate las bebidas
     listDrinks.innerHTML='';
     renderDrinks(listDrinksData);
-
+    renderFavorites(listFavorites);
+  
 })
+  
 }
 
 
 //llamarla fuera para hacerle click al pack 
 function handleClickPack(ev) {
   console.log('funciona')
-  const id = ev.currentTarget.id
-  ev.currentTarget.classList.toggle('selected')
-  //si el id es igual al elemento seleccionado, cogelo (find)
-
-
+  const idSelected = ev.currentTarget.id
+  const drinkSelected = listDrinksData.find(item => item.idDrink === idSelected);
+  //busca la posición
+  const drinkIndex = listFavoritesData.findIndex(item => item.idDrink === idSelected)
+  console.log(drinkIndex); //le doy a click -1
+  if(drinkIndex === -1) {
+    //cuando lo seleccione lo añado a mi lista de favoritos
+    ev.currentTarget.classList.add('selected')
+    //selecciono y lo añado en el otro lado 
+    listFavoritesData.push(drinkSelected)
+ } else {
+    ev.currentTarget.classList.remove('selected')
+    listDrinksData.splice(drinkIndex, 1) //elimina el elemento según la posición, se elimina así mismo
+ }
+  renderFavorites(listFavoritesData);
 }
+
+//clicas el pack y la añades en favoritos 
+function renderFavorites(drinksFav) { 
+  listFavorites.innerHTML= ''; //encuentrame la nueva búsqueda
+  for (const drinkFav of drinksFav) { 
+  listFavorites.innerHTML += `<li class="js-pack" id="${drinkFav.idDrink}">
+     <h2 class="title">${drinkFav.strDrink}</h2>
+     <img src=${drinkFav.strDrinkThumb}>
+</li>`;
+}
+}
+
+
 
 function addEventDrink() {
   const pack = document.querySelectorAll('.js-pack');
