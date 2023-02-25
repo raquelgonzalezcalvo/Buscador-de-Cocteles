@@ -1,4 +1,10 @@
-.section {
+@import 'core/variables';
+@import 'core/reset';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'pages/index';
+
+.section2 {
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -6,4 +12,8 @@
 .image {
     height: 295px;
     width: 210px;
+}
+.selected {
+    background-color: darkcyan;
+    
 }
