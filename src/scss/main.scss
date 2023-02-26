@@ -4,16 +4,73 @@
 @import 'layout/footer';
 @import 'pages/index';
 
+* {
+    margin: 50px;
+    padding: 20px;
+}
 .section2 {
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
+    font-size: 30px;
 }
-.image {
+.image { 
     height: 295px;
     width: 210px;
-}
-.selected {
-    background-color: darkcyan;
+    padding-left: 45px;
+    margin-bottom: 30px;
     
 }
+.selected {
+    background-color: rgb(169, 217, 186)
+
+}
+
+.body {
+    background-color: rgb(189, 169, 217);
+    font-family: 'Annie Use Your Telescope';
+}
+
+.input {
+    margin: 0px;
+    font-size: 30px;
+    font-family: 'Annie Use Your Telescope';
+    border-radius: 30px;
+    
+}
+
+.searchButton,
+.resetButton {
+    margin: 10px;
+    font-size: 30px;
+    font-family: 'Annie Use Your Telescope';
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.searchButton:hover,
+.resetButton:hover {
+    background-color: #4d364d;
+    color: white;
+    
+}
+
+.listTitle,
+.favoritesTitle {
+    font-size: 50px;
+    padding: 20px;
+    text-align: center;
+
+}
+
+.title {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+
+
+
+
