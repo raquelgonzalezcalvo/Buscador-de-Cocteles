@@ -1,7 +1,7 @@
 'use strict';
 
 const listDrinks = document.querySelector('.js-list-drinks');
-const inputUser = document.querySelector('.inputuser');
+const inputUser = document.querySelector('.js-inputuser');
 const inputSearch = document.querySelector('.js-search');
 const url =
   'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita';
@@ -34,7 +34,7 @@ function getItemFavorites() {
 getItemFavorites();
 
 //pintar un elemento de la lista
-//Algunas de los cócteles que devuelve el API no tienen imagen. En ese caso hay que mostrar una imagen de relleno. Podemos crear una imagen de relleno con el servicio de placeholder.com donde en la propia URL indicamos el tamaño, colores, texto:
+//Cócteles que devuelve el API no tienen imagen
 function renderDrinks(drinks) {
   for (const drink of drinks) {
     if (drink.strDrinkThumb) {
@@ -65,45 +65,37 @@ function hadleClickSearch(ev) {
       console.log(data);
       //añade la lista con los datos de los cocktails
       listDrinksData = data.drinks;
-      //vaciate las bebidas
+      //vacia mi listado y me añade el que he buscado
       listDrinks.innerHTML = '';
       renderDrinks(listDrinksData);
-      renderFavorites(listFavorites);
     });
 }
 
 //llamarla fuera para hacerle click al pack
 function handleClickPack(ev) {
+  ev.currentTarget.classList.toggle('selected');
   console.log('funciona');
   const idSelected = ev.currentTarget.id;
-
-  const drinkSelected = listDrinksData.find(
-    (item) => item.idDrink === idSelected
-  );
+  const drinkSelected = listDrinksData.find(item => item.idDrink === idSelected);
   //busca la posición
-  const drinkIndex = listFavoritesData.findIndex(
-    (item) => item.idDrink === idSelected
-  );
+  const drinkIndex = listFavoritesData.findIndex(item => item.idDrink === idSelected);
   console.log(drinkIndex); //le doy a click -1
   if (drinkIndex === -1) {
     //cuando lo seleccione lo añado a mi lista de favoritos
-    ev.currentTarget.classList.add('selected');
-    //selecciono y lo añado en el otro lado
+    //selecciono y lo añado abajo del todo de favorites
     listFavoritesData.push(drinkSelected);
   } else {
-    ev.currentTarget.classList.remove('selected');
-    listFavoritesData.splice(drinkIndex, 1); //elimina el elemento según la posición, se elimina así mismo
+    listFavoritesData.splice(drinkIndex, 1); //solo eliminar el elemento clicado
   }
   renderFavorites(listFavoritesData);
-  //con setItem añadimos,palabra clave:pack y el valor: listFavoritesData
-  localStorage.setItem('pack', JSON.stringify(listFavoritesData));
+  localStorage.setItem('pack', JSON.stringify(listFavoritesData)); //con setItem añadimos,palabra clave:pack y el valor: listFavoritesData
 }
 
 //clicas el pack y la añades en favoritos
 function renderFavorites(drinksFav) {
   listFavorites.innerHTML = ''; //encuentrame la nueva búsqueda
   for (const drinkFav of drinksFav) {
-    listFavorites.innerHTML += `<li class="js-pack" id="${drinkFav.idDrink}">
+    listFavorites.innerHTML += `<li class="js-pack' id="${drinkFav.idDrink}">
      <h2 class="title">${drinkFav.strDrink}</h2>
      <img src=${drinkFav.strDrinkThumb} class="image">
 </li>`;
