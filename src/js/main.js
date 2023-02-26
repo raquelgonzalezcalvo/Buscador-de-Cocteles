@@ -107,6 +107,7 @@ function addEventDrink() {
 function hadleClickReset(ev) {
   ev.preventDefault();
   listFavorites.innerHTML= '';
+
 }
 
 inputSearch.addEventListener('click', hadleClickSearch);

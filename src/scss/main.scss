@@ -1,7 +1,6 @@
 @import 'core/variables';
 @import 'core/reset';
 @import 'layout/header';
-@import 'layout/footer';
 @import 'pages/index';
 
 * {
@@ -27,14 +26,13 @@
 }
 
 .body {
-    background-color: rgb(189, 169, 217);
-    font-family: 'Annie Use Your Telescope';
+    background-color: rgb(162, 123, 201);
+    
 }
 
 .input {
     margin: 0px;
     font-size: 30px;
-    font-family: 'Annie Use Your Telescope';
     border-radius: 30px;
     
 }
@@ -43,7 +41,6 @@
 .resetButton {
     margin: 10px;
     font-size: 30px;
-    font-family: 'Annie Use Your Telescope';
     padding: 10px;
     border-radius: 20px;
 }
