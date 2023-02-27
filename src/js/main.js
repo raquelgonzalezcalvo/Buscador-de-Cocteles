@@ -9,7 +9,7 @@ let listDrinksData = [];
 let listFavoritesData = [];
 const listFavorites = document.querySelector('.js-list-favorites');
 
-
+//obtener los datos de las margaritas
 fetch(url)
   .then((response) => response.json())
   .then((data) => {
@@ -17,18 +17,14 @@ fetch(url)
     renderDrinks(listDrinksData);
   });
 
-//con el getItem obtenemos los datos de favoritos para mostrarlos en el navegador cuando la usuaria entra o refresca la página.
+//Obtenemos los datos de favoritos para mostrarlos en el navegador cuando la usuaria entra o refresca la página.
 function getItemFavorites() {
-  //cuando queremos obtener los datos queremos utilizar los mismos tipos de datos(string,número,array, objetos....)
   const ilFavorites = JSON.parse(localStorage.getItem('pack'));
   if (ilFavorites) {
     listFavoritesData = ilFavorites;
-    //pintame mi lista de favoritos que ya está convertida con el parse
     renderFavorites(listFavoritesData);
-    
   }
 }
-//la estoy llamando para que obtenga los datos del localStorage
 getItemFavorites();
 
 //pintar un elemento de la lista
@@ -47,7 +43,6 @@ function renderDrinks(drinks) {
      </li>`;
     }
   }
-  //para ejecutar la función click del pack
   addEventDrink();
 }
 
@@ -56,39 +51,34 @@ function hadleClickSearch(ev) {
   ev.preventDefault();
   const inputUserValue = inputUser.value.toLowerCase();
   fetch(
-    `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputUserValue}`
-  ) //aqui se añade a la url el input que ponga el usuario
+    `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputUserValue}`)
     .then((response) => response.json())
     .then((data) => {
-      //añade la lista con los datos de los cocktails
       listDrinksData = data.drinks;
-      //vacia mi listado y me añade el que he buscado
       listDrinks.innerHTML = '';
       renderDrinks(listDrinksData);
     });
 }
 
-//llamarla fuera para hacerle click al pack
+//selecciona la imagen y el titulo
 function handleClickPack(ev) {
   ev.currentTarget.classList.toggle('selected');
   const idSelected = ev.currentTarget.id;
   const drinkSelected = listDrinksData.find(item => item.idDrink === idSelected);
-  //busca la posición
   const drinkIndex = listFavoritesData.findIndex(item => item.idDrink === idSelected);
   console.log(drinkIndex);
   if (drinkIndex === -1) {
-    //selecciono y lo añado abajo del todo de favorites
     listFavoritesData.push(drinkSelected);
   } else {
-    listFavoritesData.splice(drinkIndex, 1); //solo eliminar el elemento clicado
+    listFavoritesData.splice(drinkIndex, 1);
   }
   renderFavorites(listFavoritesData);
-  localStorage.setItem('pack', JSON.stringify(listFavoritesData)); //con setItem añadimos,palabra clave:pack y el valor: listFavoritesData
+  localStorage.setItem('pack', JSON.stringify(listFavoritesData));
 }
 
 //clicas el pack y la añades en favoritos
 function renderFavorites(drinksFav) {
-  listFavorites.innerHTML = ''; //encuentrame la nueva búsqueda
+  listFavorites.innerHTML = '';
   for (const drinkFav of drinksFav) {
     listFavorites.innerHTML += `<li class="js-pack' id="${drinkFav.idDrink}">
      <h2 class="title">${drinkFav.strDrink}</h2>
@@ -97,7 +87,7 @@ function renderFavorites(drinksFav) {
   }
 }
 
-//incluye la imagen y el titulo
+//incluye los li en un pack
 function addEventDrink() {
   const pack = document.querySelectorAll('.js-pack');
   for (const li of pack) li.addEventListener('click', handleClickPack);
@@ -107,8 +97,10 @@ function addEventDrink() {
 function hadleClickReset(ev) {
   ev.preventDefault();
   listFavorites.innerHTML= '';
-
+  localStorage.removeItem('pack');
+  location.reload();
 }
+
 
 inputSearch.addEventListener('click', hadleClickSearch);
 inputReset.addEventListener('click', hadleClickReset);
