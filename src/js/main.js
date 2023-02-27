@@ -35,6 +35,8 @@ function renderDrinks(drinks) {
       listDrinks.innerHTML += `<li class="js-pack" id="${drink.idDrink}">
      <h2 class="title">${drink.strDrink}</h2>
      <img src=${drink.strDrinkThumb} class="image">
+     
+    
 </li>`;
     } else {
       listDrinks.innerHTML += `<li id="${drink.idDrink}>
@@ -65,8 +67,9 @@ function handleClickPack(ev) {
   ev.currentTarget.classList.toggle('selected');
   const idSelected = ev.currentTarget.id;
   const drinkSelected = listDrinksData.find(item => item.idDrink === idSelected);
+  console.log(drinkSelected)
   const drinkIndex = listFavoritesData.findIndex(item => item.idDrink === idSelected);
-  console.log(drinkIndex);
+
   if (drinkIndex === -1) {
     listFavoritesData.push(drinkSelected);
   } else {
