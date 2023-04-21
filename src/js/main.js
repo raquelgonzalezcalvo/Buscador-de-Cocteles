@@ -88,8 +88,8 @@ function renderFavorites(drinksFav) {
   listFavorites.innerHTML = "";
   for (const drinkFav of drinksFav) {
     listFavorites.innerHTML += `<li class="js-pack' id="${drinkFav.idDrink}">
-     <h2 class="title">${drinkFav.strDrink}</h2>
-     <img src=${drinkFav.strDrinkThumb} class="image">
+     <h2 class="title2">${drinkFav.strDrink}</h2>
+     <img src=${drinkFav.strDrinkThumb} class="image2">
 </li>`;
   }
 }

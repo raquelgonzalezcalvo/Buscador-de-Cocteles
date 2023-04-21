@@ -3,10 +3,6 @@
 @import "layout/header";
 @import "pages/index";
 
-* {
-  margin: 50px;
-  padding: 20px;
-}
 .section2 {
   display: flex;
   flex-direction: row;
@@ -17,24 +13,43 @@
 .image {
   height: 295px;
   width: 210px;
-  padding-left: 45px;
-  margin-bottom: 30px;
+  margin: 10px 0 20px 20px;
+  box-shadow: 6px 8px 15px;
 }
-.selected {
-  background-color: rgb(224, 240, 230);
+.title2 {
+  margin: 0 20px 0 20px;
+  padding: 10px;
+}
+.title {
+  margin-left: 20px;
+}
+.image2 {
   height: 295px;
   width: 210px;
+  margin: 10px 25px 20px 25px;
+  box-shadow: 6px 8px 15px;
+}
+.selected {
+  background-color: white;
+  box-shadow: 6px 8px 15px black;
+  margin: 20px 0 20px 0;
+  padding-top: 20px;
+  transform: scaleX(1.5);
+  text-transform: uppercase;
+  height: 400px;
+  width: 300px;
 }
 
 .body {
-  background-color: #9de9ee;
+  background-image: linear-gradient(135deg, #ae9cb9 10%, #fd5e086b 100%);
 }
-
-.form-div {
+.form {
   display: flex;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: center;
+  margin-top: 90px;
+  margin-bottom: 80px;
+}
+.form-div {
   &__input {
     padding: 20px 20px;
     font-size: 1.1em;
@@ -48,8 +63,11 @@
     border-radius: 25px;
     box-shadow: 5px 4px 6px rgba(0, 0, 0, 0.19);
     border: none;
+    font-size: 20px;
+    margin-left: 10px;
+    padding: 20px;
     &:hover {
-      //   background-color: ;
+      background-color: #00f4db;
       color: white;
     }
   }
@@ -58,19 +76,28 @@
     border-radius: 25px;
     box-shadow: 5px 4px 6px rgba(0, 0, 0, 0.19);
     border: none;
+    font-size: 20px;
+    margin-left: 10px;
+    padding: 20px;
+    &:hover {
+      background-color: #00f4db;
+      color: white;
+    }
   }
 }
 
-.listTitle,
+.listTitle {
+  font-size: 50px;
+  padding: 20px;
+  margin-right: 130px;
+  text-align: center;
+  color: white;
+  font-family: "Dancing Script", cursive;
+}
 .favoritesTitle {
   font-size: 50px;
   padding: 20px;
   text-align: center;
+  color: white;
   font-family: "Dancing Script", cursive;
-}
-
-.title {
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
