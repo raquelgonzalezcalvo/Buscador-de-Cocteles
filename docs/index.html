@@ -11,27 +11,58 @@
 </head>
 <body class="body"> 
     <header class="header">
-        <h2>Buscador de cócteles</h2>
+      <div class="container-header">
+        <h1 class="container-header__title">
+          Cocktails
+          <img
+            class="container-header__title__img"
+            src="./assets/images/cocktail.png"
+          />
+        </h1>
+        <h2 class="container-header__h2">The Classics</h2>
+        <p class="container-header__paragraph">
+          Bienvenido a nuestra página de cócteles, donde encontrarás una amplia
+          selección de bebidas para todos los gustos. Ya sea que estés buscando un
+          clásico Old Fashioned o un refrescante Mojito, aquí tenemos algo para ti.
+        </p>
+      </div>
     </header>
+
     <main class="main">
-        <section>
-            <form class="form js-form">
-                <input type="text" placeholder="Introduce tu cóctel" class="js-inputuser input" />
-                <input type="button" value="buscar" class="js-search searchButton"/>
-                <input type="button" value="reset" class="js-reset resetButton" />
-            </form>
-        </section>
-        <section class="section2">
-            <article>
-                <h3 class="listTitle">Lista</h3>
-                <ul class="js-list-drinks"></ul>
-            </article>
-            <article>
-                <h3 class="favoritesTitle">Favoritos</h3>
-                <ul class="js-list-favorites"></ul>
-            </article>
-        </section>
+      <section>
+        <form class="form js-form">
+          <div class="form-div">
+            <input
+              type="text"
+              placeholder="Introduce tu cóctel"
+              class="js-inputuser form-div__input"
+            />
+            <input
+              type="button"
+              value="buscar"
+              class="js-search form-div__searchButton"
+            />
+            <input
+              type="button"
+              value="reset"
+              class="js-reset form-div__resetButton"
+            />
+          </div>
+          <!-- <input type="button" value="log" class="js-log logButton" /> -->
+        </form>
+      </section>
+      <section class="section2">
+        <article>
+          <h3 class="listTitle">Lista</h3>
+          <ul class="js-list-drinks"></ul>
+        </article>
+        <article>
+          <h3 class="favoritesTitle">Favoritos</h3>
+          <ul class="js-list-favorites"></ul>
+        </article>
+      </section>
     </main>
+
     <script src="./assets/js/main.js"></script>
 </body>
 </html>

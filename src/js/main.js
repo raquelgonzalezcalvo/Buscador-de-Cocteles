@@ -1,13 +1,15 @@
-'use strict';
+"use strict";
 
-const listDrinks = document.querySelector('.js-list-drinks');
-const inputUser = document.querySelector('.js-inputuser');
-const inputSearch = document.querySelector('.js-search');
-const inputReset = document.querySelector('.js-reset');
-const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita';
+const listDrinks = document.querySelector(".js-list-drinks");
+const inputUser = document.querySelector(".js-inputuser");
+const inputSearch = document.querySelector(".js-search");
+const inputReset = document.querySelector(".js-reset");
+// const inputLog = document.querySelector(".js-log");
+const url =
+  "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita";
 let listDrinksData = [];
 let listFavoritesData = [];
-const listFavorites = document.querySelector('.js-list-favorites');
+const listFavorites = document.querySelector(".js-list-favorites");
 
 //obtener los datos de las margaritas
 fetch(url)
@@ -19,7 +21,7 @@ fetch(url)
 
 //Obtenemos los datos de favoritos para mostrarlos en el navegador cuando la usuaria entra o refresca la página.
 function getItemFavorites() {
-  const ilFavorites = JSON.parse(localStorage.getItem('pack'));
+  const ilFavorites = JSON.parse(localStorage.getItem("pack"));
   if (ilFavorites) {
     listFavoritesData = ilFavorites;
     renderFavorites(listFavoritesData);
@@ -51,21 +53,26 @@ function hadleClickSearch(ev) {
   ev.preventDefault();
   const inputUserValue = inputUser.value.toLowerCase();
   fetch(
-    `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputUserValue}`)
+    `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputUserValue}`
+  )
     .then((response) => response.json())
     .then((data) => {
       listDrinksData = data.drinks;
-      listDrinks.innerHTML = '';
+      listDrinks.innerHTML = "";
       renderDrinks(listDrinksData);
     });
 }
 
 //selecciona la imagen y el titulo
 function handleClickPack(ev) {
-  ev.currentTarget.classList.toggle('selected');
+  ev.currentTarget.classList.toggle("selected");
   const idSelected = ev.currentTarget.id;
-  const drinkSelected = listDrinksData.find(item => item.idDrink === idSelected);
-  const drinkIndex = listFavoritesData.findIndex(item => item.idDrink === idSelected);
+  const drinkSelected = listDrinksData.find(
+    (item) => item.idDrink === idSelected
+  );
+  const drinkIndex = listFavoritesData.findIndex(
+    (item) => item.idDrink === idSelected
+  );
   console.log(drinkIndex);
   if (drinkIndex === -1) {
     listFavoritesData.push(drinkSelected);
@@ -73,12 +80,12 @@ function handleClickPack(ev) {
     listFavoritesData.splice(drinkIndex, 1);
   }
   renderFavorites(listFavoritesData);
-  localStorage.setItem('pack', JSON.stringify(listFavoritesData));
+  localStorage.setItem("pack", JSON.stringify(listFavoritesData));
 }
 
 //clicas el pack y la añades en favoritos
 function renderFavorites(drinksFav) {
-  listFavorites.innerHTML = '';
+  listFavorites.innerHTML = "";
   for (const drinkFav of drinksFav) {
     listFavorites.innerHTML += `<li class="js-pack' id="${drinkFav.idDrink}">
      <h2 class="title">${drinkFav.strDrink}</h2>
@@ -89,18 +96,23 @@ function renderFavorites(drinksFav) {
 
 //incluye los li en un pack
 function addEventDrink() {
-  const pack = document.querySelectorAll('.js-pack');
-  for (const li of pack) li.addEventListener('click', handleClickPack);
+  const pack = document.querySelectorAll(".js-pack");
+  for (const li of pack) li.addEventListener("click", handleClickPack);
 }
 
 //boton de reseteo
 function hadleClickReset(ev) {
   ev.preventDefault();
-  listFavorites.innerHTML= '';
-  localStorage.removeItem('pack');
+  listFavorites.innerHTML = "";
+  localStorage.removeItem("pack");
   location.reload();
 }
 
+function hadleClickLog(ev) {
+  ev.preventDefault();
+  for (const liFav of listFavoritesData) console.log(liFav.strDrink);
+}
 
-inputSearch.addEventListener('click', hadleClickSearch);
-inputReset.addEventListener('click', hadleClickReset);
+// inputLog.addEventListener("click", hadleClickLog);
+inputSearch.addEventListener("click", hadleClickSearch);
+inputReset.addEventListener("click", hadleClickReset);
