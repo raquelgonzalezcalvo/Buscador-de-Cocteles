@@ -11,7 +11,7 @@
 }
 
 .image {
-  height: 295px;
+  height: 190px;
   width: 210px;
   margin: 10px 0 20px 20px;
   box-shadow: 6px 8px 15px;
@@ -24,20 +24,20 @@
   margin-left: 20px;
 }
 .image2 {
-  height: 295px;
+  height: 190px;
   width: 210px;
   margin: 10px 25px 20px 25px;
   box-shadow: 6px 8px 15px;
 }
 .selected {
-  background-color: white;
+  background-color: #fd5e086b 100%;
   box-shadow: 6px 8px 15px black;
-  margin: 20px 0 20px 0;
+  margin: 20px 20px 20px 20px;
   padding-top: 20px;
-  transform: scaleX(1.5);
-  text-transform: uppercase;
-  height: 400px;
+  padding: 20px;
+  height: 300px;
   width: 300px;
+  border-radius: 10%;
 }
 
 .body {
@@ -93,6 +93,11 @@
   text-align: center;
   color: white;
   font-family: "Dancing Script", cursive;
+  &__cocktail {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 .favoritesTitle {
   font-size: 50px;
