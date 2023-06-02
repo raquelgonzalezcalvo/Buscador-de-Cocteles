@@ -94,6 +94,7 @@
   color: white;
   font-family: "Dancing Script", cursive;
   &__cocktail {
+    font-family: "Caveat", cursive;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr;
@@ -105,4 +106,9 @@
   text-align: center;
   color: white;
   font-family: "Dancing Script", cursive;
+  &__cocktail {
+    // display: grid;
+    // grid-template-rows: 1fr 1fr 1fr;
+    // grid-template-columns: 1fr 1fr;
+  }
 }
