@@ -96,19 +96,15 @@
   &__cocktail {
     font-family: "Caveat", cursive;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
   }
 }
 .favoritesTitle {
   font-size: 50px;
   padding: 20px;
-  text-align: center;
   color: white;
   font-family: "Dancing Script", cursive;
   &__cocktail {
-    // display: grid;
-    // grid-template-rows: 1fr 1fr 1fr;
-    // grid-template-columns: 1fr 1fr;
   }
 }
