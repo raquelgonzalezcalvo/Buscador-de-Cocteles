@@ -49,7 +49,7 @@ function renderDrinks(drinks) {
 }
 
 //boton de búsqueda
-function hadleClickSearch(ev) {
+function handleClickSearch(ev) {
   ev.preventDefault();
   const inputUserValue = inputUser.value.toLowerCase();
   fetch(
@@ -101,7 +101,7 @@ function addEventDrink() {
 }
 
 //boton de reseteo
-function hadleClickReset(ev) {
+function handleClickReset(ev) {
   ev.preventDefault();
   listFavorites.innerHTML = "";
   localStorage.removeItem("pack");
@@ -114,5 +114,5 @@ function hadleClickLog(ev) {
 }
 
 // inputLog.addEventListener("click", hadleClickLog);
-inputSearch.addEventListener("click", hadleClickSearch);
-inputReset.addEventListener("click", hadleClickReset);
+inputSearch.addEventListener("click", handleClickSearch);
+inputReset.addEventListener("click", handleClickReset);
